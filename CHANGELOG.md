@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0
+
+* feat!: Migrate on Flutter 3.0.0
+
 ## 1.5.0
 
 * feat: Add `fatal_warnings`, `fatal_performance` and `fatal_style` parameters.
