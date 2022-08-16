@@ -1,5 +1,4 @@
 import 'package:actions_toolkit_dart/core.dart';
-import 'package:dart_code_metrics/config.dart';
 import 'package:dart_code_metrics/lint_analyzer.dart';
 import 'package:github/github.dart';
 
@@ -8,6 +7,15 @@ import 'github_checkrun_utils.dart';
 import 'github_workflow_utils.dart';
 import 'report_utils.dart';
 import 'task.dart';
+
+const _emptyLintConfig = LintConfig(
+  excludePatterns: [],
+  excludeForMetricsPatterns: [],
+  metrics: {},
+  rules: {},
+  excludeForRulesPatterns: [],
+  antiPatterns: {},
+);
 
 // ignore: long-parameter-list
 Future<void> analyze(
@@ -18,15 +26,15 @@ Future<void> analyze(
   GitHubWorkflowUtils workflowUtils,
   Arguments arguments,
 ) async {
-  final options = await analysisOptionsFromFilePath(rootFolder);
-  final lintConfig = LintConfig.fromAnalysisOptions(options);
-
   final checkRunUtils = GitHubCheckRunUtils(workflowUtils);
 
   const analyzer = LintAnalyzer();
 
-  final report =
-      await analyzer.runCliAnalysis(foldersToAnalyze, rootFolder, lintConfig);
+  final report = await analyzer.runCliAnalysis(
+    foldersToAnalyze,
+    rootFolder,
+    _emptyLintConfig,
+  );
 
   final summary = analyzer.getSummary(report);
 

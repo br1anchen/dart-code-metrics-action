@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* chore: tune CI/CD
+
 ## 2.0.0
 
 * feat!: Migrate on Flutter 3.0.0

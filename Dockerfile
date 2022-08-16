@@ -1,4 +1,4 @@
-FROM cirrusci/flutter:stable
+FROM dart:stable
 
 COPY ./action_app/ /action_app/
 

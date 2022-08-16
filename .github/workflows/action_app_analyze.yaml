@@ -92,12 +92,12 @@ jobs:
           CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         if: success()
         run: |
-          dart test --coverage=coverage
+          dart test --concurrency=2 --coverage=coverage --reporter=github --file-reporter="json:reports/tests.json"
           mv reports/tests.json reports/original.json
-          dart pub run coverage:format_coverage --packages=.packages -i coverage -o coverage/coverage.lcov --lcov --report-on=lib
+          dart pub run coverage:format_coverage -i coverage -o coverage/coverage.lcov --lcov --report-on=lib
           dart run tool/uncovered_coverage.dart
           dart test test/fake_test.dart --coverage=coverage
-          dart pub run coverage:format_coverage --packages=.packages -i coverage -o coverage/coverage.lcov --lcov --report-on=lib
+          dart pub run coverage:format_coverage -i coverage -o coverage/coverage.lcov --lcov --report-on=lib
           bash <(curl -s https://codecov.io/bash) -f coverage/coverage.lcov -F action_app
 
       - name: Publish test results

@@ -1,8 +1,13 @@
-import 'package:dart_code_metrics/config.dart';
 import 'package:dart_code_metrics/unused_files_analyzer.dart';
 import 'package:github/github.dart';
 
 import 'task.dart';
+
+const _emptyUnusedFilesConfig = UnusedFilesConfig(
+  excludePatterns: [],
+  analyzerExcludePatterns: [],
+  isMonorepo: false,
+);
 
 Future<void> unusedFiles(
   String packageName,
@@ -10,11 +15,11 @@ Future<void> unusedFiles(
   Iterable<String> foldersToAnalyze,
   GitHubCheckRunReporter reporter,
 ) async {
-  final options = await analysisOptionsFromFilePath(rootFolder);
-  final unusedFilesConfig = UnusedFilesConfig.fromAnalysisOptions(options);
-
-  final report = await const UnusedFilesAnalyzer()
-      .runCliAnalysis(foldersToAnalyze, rootFolder, unusedFilesConfig);
+  final report = await const UnusedFilesAnalyzer().runCliAnalysis(
+    foldersToAnalyze,
+    rootFolder,
+    _emptyUnusedFilesConfig,
+  );
 
   final conclusion = report.isNotEmpty
       ? CheckRunConclusion.failure

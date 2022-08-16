@@ -16,3 +16,9 @@ updates:
       - "dkrutskikh"
     commit-message:
       prefix: "chore: "
+
+  # Maintain dependencies for Dart pub
+  - package-ecosystem: "pub"
+    directory: "action_app"
+    schedule:
+      interval: "daily"
