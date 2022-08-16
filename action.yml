@@ -1,4 +1,4 @@
-name: "Dart Code Metrics Action with Flutter"
+name: "Dart Code Metrics Action with Dart"
 description: "A GitHub action to perform Dart Code Metrics checks automatically."
 author: "Dart Code Checker team"
 
