@@ -1,4 +1,4 @@
-FROM dart:stable
+FROM plugfox/flutter:stable
 
 COPY ./action_app/ /action_app/
 
