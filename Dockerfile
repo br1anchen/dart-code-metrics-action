@@ -1,4 +1,4 @@
-FROM plugfox/flutter:stable
+FROM cirrusci/flutter:stable
 
 COPY ./action_app/ /action_app/
 
