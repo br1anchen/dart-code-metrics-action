@@ -9,7 +9,7 @@ echo "creating docker image with flutter version: $FLUTTER_VERSION"
 # and if we need parameterizable values it is a matter of sending them as inputs
 docker build -t action_app \
 	--build-arg flutter_version="$FLUTTER_VERSION" \
-	GITHUB_WORKSPACE="$GITHUB_WORKSPACE" \
-	GITHUB_REPOSITORY="$GITHUB_REPOSITORY" \
-	GITHUB_SHA="$GITHUB_SHA" \
+	--build-arg GITHUB_WORKSPACE="$GITHUB_WORKSPACE" \
+	--build-arg GITHUB_REPOSITORY="$GITHUB_REPOSITORY" \
+	--build-arg GITHUB_SHA="$GITHUB_SHA" \
 	. && docker run action_app
