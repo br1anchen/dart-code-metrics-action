@@ -1,6 +1,4 @@
-ARG FLUTTER_VERSION
-
-FROM cirrusci/flutter:${FLUTTER_VERSION}
+FROM cirrusci/flutter:stable
 
 COPY ./action_app/ /action_app/
 

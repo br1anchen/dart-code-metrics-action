@@ -53,13 +53,7 @@ inputs:
     description: "Configurable unused files report title pattern."
     required: false
     default: "Dart Code Metrics unused files report of $packageName."
-  flutter_version:
-    description: "Configurable flutter version."
-    required: false
-    default: "stable"
 
 runs:
   using: "docker"
   image: "Dockerfile"
-  args:
-    - ${{ inputs.flutter_version }}
