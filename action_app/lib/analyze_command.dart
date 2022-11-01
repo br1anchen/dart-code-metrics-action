@@ -15,6 +15,8 @@ const _emptyLintConfig = LintConfig(
   rules: {},
   excludeForRulesPatterns: [],
   antiPatterns: {},
+  shouldPrintConfig: false,
+  analysisOptionsPath: null,
 );
 
 // ignore: long-parameter-list

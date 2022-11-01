@@ -7,6 +7,7 @@ const _emptyUnusedFilesConfig = UnusedFilesConfig(
   excludePatterns: [],
   analyzerExcludePatterns: [],
   isMonorepo: false,
+  shouldPrintConfig: false,
 );
 
 Future<void> unusedFiles(
