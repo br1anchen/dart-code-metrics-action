@@ -44,7 +44,7 @@ jobs:
           sdk: "stable"
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.1.0
 
       - name: Install action app dependencies
         run: (cd ../action_app; dart pub get)

@@ -38,8 +38,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-          
+      - uses: actions/checkout@v3
+
       - name: dart-code-metrics
         uses: dart-code-checker/dart-code-metrics-action@v2
         with:
@@ -66,7 +66,7 @@ jobs:
 ### Output Example
 
 * Check run output:
-  
+
   <img
   src="https://raw.githubusercontent.com/dart-code-checker/dart-code-metrics-action/master/doc/.assets/check_run_output.png"
   alt="annotation"
