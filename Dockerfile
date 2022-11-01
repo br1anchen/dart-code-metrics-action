@@ -1,23 +1,18 @@
-FROM cirrusci/android-sdk:30
+FROM dart:stable
 
-USER root
+COPY action_app/ /action_app/
 
-ENV FLUTTER_HOME=${HOME}/sdks/flutter \
-    FLUTTER_VERSION=stable
-ENV FLUTTER_ROOT=$FLUTTER_HOME
+RUN cd /action_app \
+    && dart pub get
 
-ENV PATH ${PATH}:${FLUTTER_HOME}/bin:${FLUTTER_HOME}/bin/cache/dart-sdk/bin
+ENV PATH /flutter/bin:$PATH
 
-RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME}
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends unzip \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN yes | flutter doctor --android-licenses \
-    && flutter doctor \
-    && chown -R root:root ${FLUTTER_HOME}
-
-COPY ./action_app/ /action_app/
-
-WORKDIR /action_app
-
-RUN dart pub get
+# Installing Flutter
+RUN git clone -b stable --depth 1 https://github.com/flutter/flutter.git /flutter \
+    && flutter --version
 
 ENTRYPOINT ["dart", "run", "/action_app/bin/main.dart"]
